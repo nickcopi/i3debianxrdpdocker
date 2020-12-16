@@ -9,3 +9,4 @@ services:
                         - "3389:3389"
                 cap_add:
                         - NET_ADMIN
+                        - SETUID

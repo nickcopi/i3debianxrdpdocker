@@ -2,7 +2,11 @@ FROM debian:stable-slim
 
 RUN apt update
 
-RUN export DEBIAN_FRONTEND=noninteractive && apt install -y i3 xserver-xorg xinit xrdp locales stterm
+RUN export DEBIAN_FRONTEND=noninteractive && apt install -y i3 xserver-xorg xinit xrdp locales stterm chromium vim tmux iproute2 procps
+
+RUN echo 'chromium --no-sandbox --user-data-dir=$HOME' > /usr/bin/chrome
+
+RUN chmod +x /usr/bin/chrome
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 
