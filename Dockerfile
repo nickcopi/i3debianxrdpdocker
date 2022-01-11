@@ -22,10 +22,6 @@ RUN mkdir -p /home/user/.config/i3
 
 COPY i3config /home/user/.config/i3/config
 
-COPY .env /tmp/env
+COPY init.sh /init.sh
 
-RUN . /tmp/env && printf "%s\n%s" $RDP_PASS $RDP_PASS | passwd user
-
-RUN rm /tmp/env
-
-CMD xrdp && xrdp-sesman && while true; do sleep 12 ; done
+CMD /init.sh
