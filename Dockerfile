@@ -2,7 +2,7 @@ FROM debian:sid-slim
 
 RUN apt-get update
 
-RUN export DEBIAN_FRONTEND=noninteractive && apt install -y i3 xserver-xorg xinit xrdp locales stterm  vim tmux iproute2 procps #chromium
+RUN export DEBIAN_FRONTEND=noninteractive && apt install -y i3 xserver-xorg xinit xrdp locales stterm  vim tmux iproute2 procps sudo #chromium
 
 #RUN echo 'chromium --no-sandbox --user-data-dir=$HOME' > /usr/bin/chrome
 
@@ -15,6 +15,8 @@ RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 RUN locale-gen
 
 RUN useradd -m -U -s /bin/bash user
+
+RUN usermod -aG sudo user
 
 RUN echo "exec i3" > /home/user/.xsession
 
