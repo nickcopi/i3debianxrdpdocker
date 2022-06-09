@@ -4,6 +4,8 @@ RUN apt-get update
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt install -y i3 xserver-xorg xinit xrdp locales stterm  vim tmux iproute2 procps sudo #chromium
 
+RUN export DEBIAN_FRONTEND=noninteractive && apt install -y firefox
+
 #RUN echo 'chromium --no-sandbox --user-data-dir=$HOME' > /usr/bin/chrome
 
 #RUN chmod +x /usr/bin/chrome
