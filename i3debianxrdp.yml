@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i3debianxrdp
+  labels:
+    app: i3debianxrdp
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: i3debianxrdp
+  template:
+    metadata:
+      labels:
+        app: i3debianxrdp
+    spec:
+      containers:
+        - name: i3debianxrdp
+          image: copinf/i3debianxrdp
+          imagePullPolicy: Always
+          env:
+            - name: RDP_PASS
+              value: 'securerdppass'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: i3debianxrdp-service
+  labels:
+    app: i3debianxrdp
+spec:
+  ports:
+  - port: 3389
+    protocol: TCP
+    targetPort: 3389
+  selector:
+    app: i3debianxrdp
+  type: LoadBalancer
